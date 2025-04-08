@@ -4,45 +4,46 @@
 
 void	ft_rev_int_tab(int *tab, int size)
 {
+	int	temp;
+	int	i;
+	int	half;
 
-	int inv[size];
-	int final = 0;
-
-	while (size >= 0)
+	i = 0;
+	temp = 0;
+	half = size / 2;
+	while (half > 0)
 	{
-		inv[final]=tab[size];				
+		temp = tab [i];
+		tab [i] = tab [size - 1];
+		tab [size - 1] = temp;
+		half--;
+		i++;
 		size--;
-		final++;
-
-
 	}
-
-	
-	*tab = *inv;
 }
 
-
-int	 main ()
+void	print_array(int *tab, int size)
 {
+	int	i;
 
-	int tab[] = {1, 2, 3, 4, 5};
-	int size = 6;
-	int i = 0;
-
-	while(tab[i] < size)
+	i = 0;
+	while (i < size)
 	{
-	printf("%d ", tab[i]);
-	i++;
-	}	
+		printf("%d ", *(tab + i));
+		i++;
+	}
+}
 
+int	main(void)
+{
+	int	size;
+	int	tab[10] = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
+
+	size = 10;
+	printf("Array a invertir:\n");
+	print_array(tab, size);
 	ft_rev_int_tab(tab, size);
-	
-	while(tab[i] < size)
-        {
-        printf("%d ", tab[i]);
-        i++;
-        }
-
-
-
+	printf("\nArray invertido:\n");
+	print_array(tab, size);
+	return (0);
 }
